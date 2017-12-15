@@ -40,7 +40,7 @@ function browseInv() {
                 type: "text",
                 message: "Enter the product id of the item you want: ",
                 validate: function (input) {
-                    if ((typeof res[parseInt(input) - 1] === 'undefined') || isNaN(input)) { //if element exists or if input is non a number return false
+                    if (isNaN(input)) { //if input is non a number return false
                         console.log("\nSorry! That item does not exist.");
                         return false;
                     }
@@ -60,7 +60,16 @@ function browseInv() {
             }
             ]).then(function (ans) {
                 console.log("Checking stock... please wait!");
-                if (res[ans.itemID - 1].stock_quantity < ans.quantity) {
+                var item;
+                res.forEach(function(elem) {
+                    if (elem.product_id === parseInt(ans.itemID)) {
+                        item = elem;
+                    }
+                });
+                if (typeof item === "undefined"){
+                    console.log("Sorry! That item does not exist.");
+                    startProg();
+                } else if (item.stock_quantity < ans.quantity) {
                     console.log("Sorry! We don't currently have that much.");
                     startProg();
                 } else if (ans.quantity === "0") {
@@ -69,7 +78,7 @@ function browseInv() {
                 } 
                 else {
                     console.log("Good news! We can fulfill that order!");
-                    connection.query("UPDATE products SET stock_quantity = ? WHERE product_id = ?", [res[parseInt(ans.itemID) - 1].stock_quantity - parseInt(ans.quantity), ans.itemID], function (err, res) {
+                    connection.query("UPDATE products SET stock_quantity = ? WHERE product_id = ?", [item.stock_quantity - parseInt(ans.quantity), ans.itemID], function (err, res) {
                         if (err) throw err;
                         startProg();
                     });
