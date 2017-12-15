@@ -34,7 +34,7 @@ function startProg() {
             console.log("Keep up the good work, you hard worker, you!");
             connection.end();
         }
-    })
+    });
 }
 
 function viewInv() {
@@ -42,22 +42,109 @@ function viewInv() {
         if (err) throw err;
         console.table(res);
         startProg();
-    })
+    });
 }
 
 function viewLowInv() {
-    console.log("function under construction");
-    startProg()
+    connection.query("SELECT * FROM products WHERE (stock_quantity < 5)", function(err, res) {
+        if (err) throw err;
+        console.table(res);
+        startProg();
+    });
 }
 
 function addInv() {
-    console.log("function under construction");
-    startProg()
+    // console.log("function under construction");
+    // startProg()
+    inquirer.prompt([
+        {
+            name: "itemID",
+            type: "text",
+            message: "Enter a product ID: ",
+            validate: function(input) {
+                if (isNaN(input)) {
+                    console.log("\nSorry! That is not a valid item ID!");
+                    return false;
+                }
+                return true;
+            }
+        },
+        {
+            name: "quantity",
+            type: "text",
+            message: "How many are you adding? ",
+            validate: function(input) {
+                if (isNaN(input)) {
+                    console.log("\nSorry! That is not a valid amount!");
+                    return false;
+                }
+                return true;
+            }
+        }
+    ]).then(function(ans) {
+        connection.query("SELECT * FROM products", function(err, res) {
+            if (err) throw err;
+            var item;
+            res.forEach(function(elem) {
+                if (elem.product_id === parseInt(ans.itemID)) {
+                    item = elem;
+                }
+            });
+            if (typeof item === "undefined") {
+                console.log("Sorry! That item does not exist");
+                startProg();
+            } else {
+                connection.query("UPDATE products SET stock_quantity = stock_quantity + ? WHERE product_id = ?", [ans.quantity, ans.itemID], function(err, res) {
+                    if (err) throw err;
+                    startProg();
+                });
+            }
+        });
+    });
 }
 
 function addProd() {
-    console.log("function under construction");
-    startProg()
+    inquirer.prompt([
+        {
+            name: "itemName",
+            type: "text",
+            message: "What is the item description? "
+        },
+        {
+            name: "itemPrice",
+            type: "text",
+            message: "How much is this item? ",
+            validate: function(input) {
+                if(isNaN(input)) {
+                    console.log("\nThat is not a valid amount.");
+                    return false;
+                }
+                return true;
+            }
+        },
+        {
+            name: "itemQuantity",
+            type: "text",
+            message: "How many are you adding? ",
+            validate: function(input) {
+                if(isNaN(input)) {
+                    console.log("\nThat is not a valid amount.");
+                    return false;
+                }
+                return true;
+            }
+        },
+        {
+            name: "itemDept",
+            type: "text",
+            message: "What department does this item belong in? "
+        }
+    ]).then(function(ans) {
+        connection.query("INSERT INTO products(product_name, price, stock_quantity, department_name) VALUES (?, ?, ?,?)", [ans.itemName, ans.itemPrice, ans.itemQuantity, ans.itemDept], function (err, res) {
+            if (err) throw err;
+            startProg();
+        });
+    });
 }
 
 startProg()

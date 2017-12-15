@@ -39,9 +39,9 @@ function browseInv() {
                 name: "itemID",
                 type: "text",
                 message: "Enter the product id of the item you want: ",
-                validate: function (input) {
-                    if (isNaN(input)) { //if input is non a number return false
-                        console.log("\nSorry! That item does not exist.");
+                validate: function(input) { //if input is not a number
+                    if (isNaN(input)) {
+                        console.log("\nSorry! That is not a valid item ID!");
                         return false;
                     }
                     return true;
@@ -50,11 +50,11 @@ function browseInv() {
                 name: "quantity",
                 type: "text",
                 message: "How many would you like?",
-                validate: function (input) {
-                    if (isNaN(input)) { //if input is not a number return false
-                        console.log("\nSorry! That is not a valid number!");
+                validate: function(input) {
+                    if (isNaN(input)) {//if input is not a number
+                        console.log("\nSorry! That is not a valid amount!");
                         return false;
-                    } 2
+                    }
                     return true;
                 }
             }
