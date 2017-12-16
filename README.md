@@ -1,7 +1,9 @@
 # bamazon
 
 ###customer
+
 ![bamazonCustomer](Images/bamazonCustomer.gif)
+
 Customer has the following options: 
 1. View inventory
 	* Select item and quantity
@@ -12,7 +14,9 @@ Customer has the following options:
 *no known issues*
 
 ###manager
+
 ![bamazonManager](Images/bamazonManager.gif)
+
 Manager has the following options:
 1. View All Inventory
 	* Will show all inventory
@@ -29,7 +33,9 @@ Manager has the following options:
 *no known issues*
 
 ###supervisor
+
 ![bamazonSupervisor](Images/bamazonSupervisor.gif)
+
 Supervisor has the following options:
 1. View departments
 	* Show all departments, with assosciated overhead costs and total product sales, as well as total profits calculated by subtracting product sales from overhead costs.
