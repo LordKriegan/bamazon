@@ -78,7 +78,8 @@ function browseInv() {
                 } 
                 else {
                     console.log("Good news! We can fulfill that order!");
-                    connection.query("UPDATE products SET stock_quantity = ? WHERE product_id = ?", [item.stock_quantity - parseInt(ans.quantity), ans.itemID], function (err, res) {
+                    //english translation of sql query: where product id is BLAH, change stock quantity to the current amount minus amount purchased, add amount to product_sales equal to the price of the product * amount purchased.
+                    connection.query("UPDATE products SET stock_quantity = ?, product_sales = product_sales + (price * ?) WHERE product_id = ?", [item.stock_quantity - parseInt(ans.quantity), ans.quantity, ans.itemID], function (err, res) {
                         if (err) throw err;
                         startProg();
                     });

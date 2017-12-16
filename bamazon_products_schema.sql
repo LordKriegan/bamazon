@@ -11,3 +11,11 @@ CREATE TABLE products (
 );
 
 SELECT * FROM products;
+
+--the following is for altering existing tables--
+
+USE bamazon;
+ALTER TABLE products
+	ADD product_sales DECIMAL(6,2) NOT NULL;
+    
+SELECT * FROM products;

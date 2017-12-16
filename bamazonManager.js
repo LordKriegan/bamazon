@@ -96,6 +96,7 @@ function addInv() {
             } else {
                 connection.query("UPDATE products SET stock_quantity = stock_quantity + ? WHERE product_id = ?", [ans.quantity, ans.itemID], function(err, res) {
                     if (err) throw err;
+                    console.log("Inventory has been updated.");
                     startProg();
                 });
             }
@@ -142,6 +143,7 @@ function addProd() {
     ]).then(function(ans) {
         connection.query("INSERT INTO products(product_name, price, stock_quantity, department_name) VALUES (?, ?, ?,?)", [ans.itemName, ans.itemPrice, ans.itemQuantity, ans.itemDept], function (err, res) {
             if (err) throw err;
+            console.log("New item has been added to inventory.");
             startProg();
         });
     });
