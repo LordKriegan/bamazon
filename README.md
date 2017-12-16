@@ -1,6 +1,6 @@
 # bamazon
 
-###customer
+### customer
 
 ![bamazonCustomer](Images/bamazonCustomer.gif)
 
@@ -13,7 +13,7 @@ Customer has the following options:
 
 *no known issues*
 
-###manager
+### manager
 
 ![bamazonManager](Images/bamazonManager.gif)
 
@@ -32,7 +32,7 @@ Manager has the following options:
 
 *no known issues*
 
-###supervisor
+### supervisor
 
 ![bamazonSupervisor](Images/bamazonSupervisor.gif)
 
