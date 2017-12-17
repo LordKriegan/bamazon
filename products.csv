@@ -1,12 +1,13 @@
 product_id,product_name,price,stock_quantity,department_name,product_sales
 1,"QS Desktop - Gaming Edition",999.99,11,computers,999.99
 2,"QS Monitor",199.99,14,computer_parts,399.98
-3,"QS Mouse",29.99,42,computer_parts,59.97
+3,"QS Mouse",29.99,40,computer_parts,119.95
 4,"NVidia GTX GEForce 970",899.99,9,computer_parts,899.99
-5,"I7-4790k 4GHz CPU",999.99,4,computer_parts,4999.95
+5,"I7-4790k 4GHz CPU",999.99,6,computer_parts,4999.95
 6,"Z97 MK2 Sabertooth Motherboard",499.99,8,computer_parts,499.99
 7,"World of Warcraft - All expansions",149.99,32,games,299.98
 8,"Half-Life III - Confirmed",79.99,58,games,159.98
 9,"Star Wars - Rogue One",19.99,6,movies,139.93
-10,"Crap in a Can",0.49,766,misc,50.96
+10,"Crap in a Can",0.49,762,misc,52.92
 11,"Desk Lamp",29.99,26,"office supplies",59.98
+12,Katana,9999.99,1,misc,0.00
